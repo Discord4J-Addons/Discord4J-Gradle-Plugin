@@ -17,6 +17,10 @@ public class Discord4GradlePluginExtension {
 	 * The Discord4J version to use;
 	 */
 	private String version = "dev-SNAPSHOT";
+	/**
+	 * The bot API token to use to log into discord with.
+	 */
+	private String apiKey;
 	
 	public boolean isScanForModules() {
 		return scanForModules;
@@ -40,5 +44,13 @@ public class Discord4GradlePluginExtension {
 	
 	public void setVersion(String version) {
 		this.version = version;
+	}
+	
+	public String getApiKey() {
+		return apiKey;
+	}
+	
+	public void setApiKey(String apiKey) {
+		this.apiKey = apiKey;
 	}
 }
