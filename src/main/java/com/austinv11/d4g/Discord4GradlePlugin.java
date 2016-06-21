@@ -11,7 +11,7 @@ public class Discord4GradlePlugin implements Plugin<Project> {
 	
 	@Override
 	public void apply(Project project) {
-		project.getExtensions().add("d4gSettings", Discord4GradlePluginExtension.class);
+		project.getExtensions().add("discord", Discord4GradlePluginExtension.class);
 		
 //		Task setup = project.getTasks().create("setupD4J", SetupD4JTask.class);
 		project.getTasks().create("modules", ModuleTask.class).dependsOn(project.getTasks().getByName("jar"));
