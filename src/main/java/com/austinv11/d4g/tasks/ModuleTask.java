@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * This task launches and runs the Discord4J modules in this project.
+ * @see CleanModuleTask
  */
 public class ModuleTask extends JavaExec {
 	
