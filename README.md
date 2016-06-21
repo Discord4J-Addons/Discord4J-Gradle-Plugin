@@ -1,4 +1,4 @@
-# Discord4J-Gradle-Plugin [![Download](https://jitpack.io/v/Discord4J-Addons/Discord4J-Gradle-Plugin.svg?style=flat-square)](https://jitpack.io/#Discord4J-Addons/Discord4J-Gradle-Plugin)
+# Discord4Gradle [![Download](https://jitpack.io/v/Discord4J-Addons/Discord4J-Gradle-Plugin.svg?style=flat-square)](https://jitpack.io/#Discord4J-Addons/Discord4J-Gradle-Plugin)
 A gradle plugin which allows for gradle builds to have Discord4J integration.
 
 ## Adding the plugin to your `build.gradle` file:
