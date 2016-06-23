@@ -36,30 +36,18 @@ public class ModuleTask extends JavaExec {
 		setMain("sx.blah.discord.Discord4J");
 		
 		List<File> deps = new ArrayList<>();
-		List<File> modules = new ArrayList<>();
 		File discordDir = new File("discord4j");
 		File modulesDir = new File("modules");
 		if ((!discordDir.mkdir() && !discordDir.exists() && !discordDir.isDirectory()) 
 				|| (!modulesDir.mkdir() && !modulesDir.exists() && !modulesDir.isDirectory()))
 			throw new RuntimeException("Unable to generate required directories for running the modules");
 		
-		
-		getProject().getConfigurations().getByName("module").forEach(file -> {
-			File newFile = new File(modulesDir, file.getName());
+		getProject().getConfigurations().getByName("runtime").forEach(file -> { //Moves dependencies to a "discord4j" folder
+			File newFile = new File(discordDir, file.getName());
 			if (!file.renameTo(newFile))
 				throw new RuntimeException("Unable to move "+file.getPath()+" to "+newFile.getPath());
 			
-			modules.add(file);
-		});
-		
-		getProject().getConfigurations().getByName("runtime").forEach(file -> { //Moves dependencies to a "discord4j" folder
-			if (!modules.contains(file)) {
-				File newFile = new File(discordDir, file.getName());
-				if (!file.renameTo(newFile))
-					throw new RuntimeException("Unable to move "+file.getPath()+" to "+newFile.getPath());
-				
-				deps.add(newFile);
-			}
+			deps.add(newFile);
 		});
 		setClasspath(getProject().files(deps.toArray())); //Sets the classpath to include the dependencies
 		
