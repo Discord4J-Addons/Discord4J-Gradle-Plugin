@@ -1,11 +1,13 @@
 package com.austinv11.d4g.tasks;
 
 import com.austinv11.d4g.Discord4GradlePluginExtension;
+import org.apache.commons.io.FileUtils;
 import org.gradle.api.tasks.JavaExec;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.bundling.Jar;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,9 +46,11 @@ public class ModuleTask extends JavaExec {
 		
 		getProject().getConfigurations().getByName("runtime").forEach(file -> { //Moves dependencies to a "discord4j" folder
 			File newFile = new File(discordDir, file.getName());
-			if (!file.renameTo(newFile))
-				throw new RuntimeException("Unable to move "+file.getPath()+" to "+newFile.getPath());
-			
+			try {
+				FileUtils.copyFile(file, newFile);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
 			deps.add(newFile);
 		});
 		setClasspath(getProject().files(deps.toArray())); //Sets the classpath to include the dependencies
@@ -54,8 +58,11 @@ public class ModuleTask extends JavaExec {
 		jar.getOutputs().getFiles().forEach(file -> { //Moves compiled binaries to the "modules" folder
 			if (file.exists() && !file.isDirectory() && file.getAbsolutePath().endsWith(".jar")) {
 				File newFile = new File(modulesDir, file.getName());
-				if (!file.renameTo(newFile))
-					throw new RuntimeException("Unable to move "+file.getPath()+" to "+newFile.getPath());
+				try {
+					FileUtils.copyFile(file, newFile);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
 			}
 		});
 		
