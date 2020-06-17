@@ -1,3 +1,8 @@
+# This library is DEFUNCT
+Use [Discord4J v3](https://discord4j.com) instead!
+
+This library was created for Discord4J v2 which is no longer supported or maintained.
+
 # Discord4Gradle [![Download](https://jitpack.io/v/Discord4J-Addons/Discord4J-Gradle-Plugin.svg?style=flat-square)](https://jitpack.io/#Discord4J-Addons/Discord4J-Gradle-Plugin)
 A gradle plugin which allows for gradle builds to have Discord4J integration.
 
